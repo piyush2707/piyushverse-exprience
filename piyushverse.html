@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PiyushVerse - Designed by Piyush</title>
+<style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
+    body{background:#f5f7fa;color:#222;scroll-behavior:smooth;}
+    header{background:royalblue;color:#fff;padding:20px;text-align:center;position:relative;overflow:hidden;}
+    header h1{font-size:28px;}
+    .fly{position:absolute;top:50%;left:-250px;transform:translateY(-50%);animation:flyIn 6s linear infinite;font-weight:bold;white-space:nowrap;}
+    @keyframes flyIn{0%{left:-250px;}50%{left:50%;transform:translate(-50%,-50%);}100%{left:110%;}}
+    nav{display:flex;justify-content:center;gap:20px;margin-top:10px;}
+    nav a{color:white;text-decoration:none;font-weight:bold;}
+    section{max-width:1000px;margin:40px auto;padding:20px;background:white;border-radius:8px;box-shadow:0 0 10px rgba(0,0,0,0.1);}
+    section h2{margin-bottom:15px;color:royalblue;}
+    /* Social feed */
+    .tweet{border-bottom:1px solid #eee;padding:10px 0;}
+    .tweet:last-child{border-bottom:none;}
+    .author{font-weight:bold;color:royalblue;}
+    .handle{color:gray;font-size:14px;}
+    .content{margin-top:5px;}
+    /* AI Chat */
+    .chat-box{background:#f0f2f5;padding:15px;border-radius:8px;max-height:300px;overflow-y:auto;}
+    .msg{margin:5px 0;padding:8px 12px;border-radius:12px;max-width:80%;}
+    .user{background:royalblue;color:white;margin-left:auto;}
+    .bot{background:#ddd;color:#222;}
+    .chat-input{display:flex;margin-top:10px;}
+    .chat-input input{flex:1;padding:8px;border:1px solid #ccc;border-radius:4px;}
+    .chat-input button{padding:8px 12px;background:royalblue;color:white;border:none;border-radius:4px;cursor:pointer;}
+    /* Media Gallery */
+    .gallery{display:flex;overflow-x:auto;gap:10px;}
+    .gallery img{width:250px;height:150px;object-fit:cover;border-radius:8px;}
+    /* Footer */
+    footer{text-align:center;padding:20px;background:#fff;margin-top:20px;}
+    footer a{text-decoration:none;color:royalblue;font-weight:bold;margin:0 10px;}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🌐 Welcome to PiyushVerse</h1>
+    <div class="fly">✨ Designed by Piyush ✨</div>
+    <nav>
+        <a href="#feed">Social Feed</a>
+        <a href="#chat">AI Chat</a>
+        <a href="#media">Media</a>
+    </nav>
+</header>
+
+<section id="feed">
+    <h2>🐦 Social Feed</h2>
+    <div id="tweets"></div>
+</section>
+
+<section id="chat">
+    <h2>🤖 AI Chat Panel</h2>
+    <div class="chat-box" id="chatBox"></div>
+    <div class="chat-input">
+        <input type="text" id="chatInput" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</section>
+
+<section id="media">
+    <h2>🎬 Media Gallery</h2>
+    <div class="gallery">
+        <img src="https://picsum.photos/id/1015/400/250" alt="">
+        <img src="https://picsum.photos/id/1016/400/250" alt="">
+        <img src="https://picsum.photos/id/1018/400/250" alt="">
+        <img src="https://picsum.photos/id/1019/400/250" alt="">
+    </div>
+</section>
+
+<footer>
+    <p>Connect with me:</p>
+    <a href="https://instagram.com/withpiyushhz" target="_blank">Instagram</a> |
+    <a href="https://www.linkedin.com/in/piyush2707/" target="_blank">LinkedIn</a>
+</footer>
+
+<script>
+    // Social Feed Data
+    const tweets = [
+        {author:"Piyush Joshi",handle:"@withpiyushhz",content:"Coding at 2am feels like writing love letters to the compiler 💻❤️"},
+        {author:"Piyush Joshi",handle:"@withpiyushhz",content:"Coffee: Because adulting is hard ☕😂"},
+        {author:"Piyush Joshi",handle:"@withpiyushhz",content:"Made a project for GitHub... and yes, it works on my machine!"},
+        {author:"Piyush Joshi",handle:"@withpiyushhz",content:"Workout skipped but motivation reel saved 💪"}
+    ];
+    const tweetContainer = document.getElementById("tweets");
+    tweets.forEach(t=>{
+        tweetContainer.innerHTML += `
+            <div class="tweet">
+                <div><span class="author">${t.author}</span> <span class="handle">${t.handle}</span></div>
+                <div class="content">${t.content}</div>
+            </div>
+        `;
+    });
+
+    // AI Chat
+    const chatBox = document.getElementById("chatBox");
+    function sendMessage(){
+        const input = document.getElementById("chatInput");
+        const msg = input.value.trim();
+        if(!msg) return;
+        chatBox.innerHTML += `<div class="msg user">${msg}</div>`;
+        input.value="";
+        setTimeout(()=>{
+            const replies = [
+                "Hello! I'm your AI assistant in PiyushVerse 🤖",
+                "That's interesting! Tell me more.",
+                "Wow! Sounds awesome 😎",
+                "I totally agree with you 👍"
+            ];
+            const reply = replies[Math.floor(Math.random()*replies.length)];
+            chatBox.innerHTML += `<div class="msg bot">${reply}</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        },800);
+    }
+</script>
+
+</body>
+</html>
